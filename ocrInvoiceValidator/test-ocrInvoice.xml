@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ocrInvoice xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.iconpln.co.id/procure-to-pay xsd/ocrInvoice.xsd"
+            xmlns="http://www.iconpln.co.id/procure-to-pay">
+  <invoiceData>
+    <invoiceDate>2020-02-04T11:32:00.5</invoiceDate>
+    <invoiceNumber>123</invoiceNumber>
+    <invoiceCurrency>IDR</invoiceCurrency>
+    <customerReference>123</customerReference>
+    <chargedAmount>100</chargedAmount>
+    <linkToInvoiceScanImage></linkToInvoiceScanImage>
+    <custoemrNumber>123</custoemrNumber>
+  </invoiceData>
+  <billTo>
+    <name></name>
+    <contact></contact>
+    <contractid></contractid>
+  </billTo>
+  <vendor>
+    <name></name>
+    <contact></contact>
+  </vendor>
+  <lineItems>
+    <line></line>
+  </lineItems>
+  <remitTo>
+    <IBAN></IBAN>
+    <accountNumber></accountNumber>
+    <SWFT></SWFT>
+  </remitTo>
+</ocrInvoice>

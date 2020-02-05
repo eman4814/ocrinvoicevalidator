@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://www.iconpln.co.id/procure-to-pay"
+            targetNamespace="http://www.iconpln.co.id/procure-to-pay"
+            elementFormDefault="qualified">
+  <xsd:include schemaLocation="ocrInvoice.xsd"/>
+  <xsd:element name="invoice">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="invoiceData" type="invoiceDataType"/>
+        <xsd:element name="billTo" type="billToType"/>
+        <xsd:element name="vendor" type="vendorType"/>
+        <xsd:element name="lineItems" type="lineItemType"/>
+        <xsd:element name="remitTo" type="remitToType"/>
+        <xsd:element name="validationData" type="validationDataType"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:complexType name="validationDataType">
+    <xsd:sequence>
+      <xsd:element name="validated" type="xsd:boolean"/>
+      <xsd:element name="validationText" type="xsd:string"/>
+      <xsd:element name="handler" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

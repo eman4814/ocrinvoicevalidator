@@ -1,0 +1,61 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Tue Feb 04 20:01:18 ICT 2020
+  Author:  USER
+  Type: BPEL 2.0 Process
+  Purpose: Empty BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="ocrInvoiceProducerProcess"
+               targetNamespace="http://xmlns.oracle.com/ocrInvoiceValidator/ocrInvoiceJMSProducer/ocrInvoiceProducerProcess"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="http://xmlns.oracle.com/ocrInvoiceValidator/ocrInvoiceJMSProducer/ocrInvoiceProducerProcess"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ns1="http://oracle.com/sca/soapservice/ocrInvoiceValidator/ocrInvoiceJMSProducer/ServiceJMSProducer"
+         xmlns:ns2="http://xmlns.oracle.com/pcbpel/adapter/jms/ocrInvoiceValidator/ocrInvoiceJMSProducer/produceOcrInvoiceJMS"
+         xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:ns3="http://www.iconpln.co.id/procure-to-pay">
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <partnerLinks>
+    <partnerLink name="ServiceJMSProducer"
+                 partnerLinkType="ns1:ServiceJMSProducer"
+                 myRole="OcrInvoiceProducerInterface"/>
+    <partnerLink name="produceOcrInvoiceJMS"
+                 partnerLinkType="ns2:Produce_Message_plt"
+                 partnerRole="Produce_Message_role"/>
+  </partnerLinks>
+  <variables>
+    <variable name="Receive1_produce_InputVariable"
+              messageType="ns1:requestMessage"/>
+    <variable name="Invoke1_Produce_Message_InputVariable"
+              messageType="ns2:Produce_Message_msg"/>
+  </variables>
+  <sequence name="main">
+    <receive name="Receive1" createInstance="yes"
+             partnerLink="ServiceJMSProducer"
+             portType="ns1:OcrInvoiceProducerInterface" operation="produce"
+             variable="Receive1_produce_InputVariable"/>
+    <assign name="Assign1">
+      <copy>
+        <from>$Receive1_produce_InputVariable.input</from>
+        <to>$Invoke1_Produce_Message_InputVariable.body</to>
+      </copy>
+    </assign>
+    <invoke name="Invoke1"
+            partnerLink="produceOcrInvoiceJMS"
+            portType="ns2:Produce_Message_ptt" operation="Produce_Message"
+            inputVariable="Invoke1_Produce_Message_InputVariable"
+            bpelx:invokeAsDetail="no"/>
+  </sequence>
+</process>

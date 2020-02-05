@@ -1,0 +1,22 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions
+     name="ServiceJMSProducer"
+     targetNamespace="http://oracle.com/sca/soapservice/ocrInvoiceValidator/ocrInvoiceJMSProducer/ServiceJMSProducer"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:inp1="http://www.iconpln.co.id/procure-to-pay"
+     xmlns:tns="http://oracle.com/sca/soapservice/ocrInvoiceValidator/ocrInvoiceJMSProducer/ServiceJMSProducer"
+    >
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://www.iconpln.co.id/procure-to-pay" schemaLocation="xsd/ocrInvoice.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="requestMessage">
+        <wsdl:part name="input" element="inp1:ocrInvoice"/>
+    </wsdl:message>
+    <wsdl:portType name="OcrInvoiceProducerInterface">
+        <wsdl:operation name="produce">
+            <wsdl:input message="tns:requestMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

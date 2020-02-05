@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://www.iconpln.co.id/procure-to-pay"
+            targetNamespace="http://www.iconpln.co.id/procure-to-pay"
+            elementFormDefault="qualified">
+  <xsd:element name="ocrInvoice">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="invoiceData" type="invoiceDataType"/>
+        <xsd:element name="billTo" type="billToType"/>
+        <xsd:element name="vendor" type="vendorType"/>
+        <xsd:element name="lineItems" type="lineItemType"/>
+        <xsd:element name="remitTo" type="remitToType"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:complexType name="invoiceDataType">
+    <xsd:sequence>
+      <xsd:element name="invoiceDate" type="xsd:dateTime"/>
+      <xsd:element name="invoiceNumber" type="xsd:integer"/>
+      <xsd:element name="invoiceCurrency" type="xsd:string"/>
+      <xsd:element name="customerReference" type="xsd:string"/>
+      <xsd:element name="chargedAmount" type="xsd:integer"/>
+      <xsd:element name="linkToInvoiceScanImage" type="xsd:string"/>
+      <xsd:element name="custoemrNumber" type="xsd:integer"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="billToType">
+    <xsd:sequence>
+      <xsd:element name="name" type="xsd:string"/>
+      <xsd:element name="contact" type="xsd:string"/>
+      <xsd:element name="contractid" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="vendorType">
+    <xsd:sequence>
+      <xsd:element name="name" type="xsd:string"/>
+      <xsd:element name="contact" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="lineItemType">
+    <xsd:sequence>
+      <xsd:element name="line" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="remitToType">
+    <xsd:sequence>
+      <xsd:element name="IBAN" type="xsd:string"/>
+      <xsd:element name="accountNumber" type="xsd:string"/>
+      <xsd:element name="SWFT" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="385b7b35-a99d-47a9-88e9-32988cecd8ad" activeEnvironment="Default" name="ServiceJMSProducer" soapui-version="5.1.3" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="5b144896-8ec6-4693-9f6b-7254b19b1e11" wsaVersion="NONE" name="OcrInvoiceProducerInterfaceBinding" type="wsdl" bindingName="{http://oracle.com/sca/soapservice/ocrInvoiceValidator/ocrInvoiceJMSProducer/ServiceJMSProducer}OcrInvoiceProducerInterfaceBinding" soapVersion="1_1" anonymous="optional" definition="http://desktop-4tr95m4:7101/soa-infra/services/default/ocrInvoiceJMSProducer/ServiceJMSProducer?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://desktop-4tr95m4:7101/soa-infra/services/default/ocrInvoiceJMSProducer/ServiceJMSProducer?WSDL"><con:part><con:url>http://desktop-4tr95m4:7101/soa-infra/services/default/ocrInvoiceJMSProducer/ServiceJMSProducer?WSDL</con:url><con:content><![CDATA[<wsdl:definitions name="ServiceJMSProducer" targetNamespace="http://oracle.com/sca/soapservice/ocrInvoiceValidator/ocrInvoiceJMSProducer/ServiceJMSProducer" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:inp1="http://www.iconpln.co.id/procure-to-pay" xmlns:tns="http://oracle.com/sca/soapservice/ocrInvoiceValidator/ocrInvoiceJMSProducer/ServiceJMSProducer" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:documentation>
+    <abstractWSDL>http://DESKTOP-4TR95M4:7101/soa-infra/services/default/ocrInvoiceJMSProducer!1.0/ServiceJMSProducer.wsdl</abstractWSDL>
+  </wsdl:documentation>
+  <wsdl:types>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://www.iconpln.co.id/procure-to-pay" schemaLocation="http://desktop-4tr95m4:7101/soa-infra/services/default/ocrInvoiceJMSProducer/ServiceJMSProducer?XSD=xsd/ocrInvoice.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="requestMessage">
+    <wsdl:part name="input" element="inp1:ocrInvoice"/>
+  </wsdl:message>
+  <wsdl:portType name="OcrInvoiceProducerInterface">
+    <wsdl:operation name="produce">
+      <wsdl:input message="tns:requestMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="OcrInvoiceProducerInterfaceBinding" type="tns:OcrInvoiceProducerInterface">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="produce">
+      <soap:operation style="document" soapAction="produce"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceJMSProducer">
+    <wsdl:port name="OcrInvoiceProducerInterface_pt" binding="tns:OcrInvoiceProducerInterfaceBinding">
+      <soap:address location="http://desktop-4tr95m4:7101/soa-infra/services/default/ocrInvoiceJMSProducer/ServiceJMSProducer"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://desktop-4tr95m4:7101/soa-infra/services/default/ocrInvoiceJMSProducer/ServiceJMSProducer?XSD=xsd/ocrInvoice.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://www.iconpln.co.id/procure-to-pay" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.iconpln.co.id/procure-to-pay">
+  <xsd:element name="ocrInvoice">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="invoiceData" type="invoiceDataType"/>
+        <xsd:element name="billTo" type="billToType"/>
+        <xsd:element name="vendor" type="vendorType"/>
+        <xsd:element name="lineItems" type="lineItemType"/>
+        <xsd:element name="remitTo" type="remitToType"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:complexType name="invoiceDataType">
+    <xsd:sequence>
+      <xsd:element name="invoiceDate" type="xsd:dateTime"/>
+      <xsd:element name="invoiceNumber" type="xsd:integer"/>
+      <xsd:element name="invoiceCurrency" type="xsd:string"/>
+      <xsd:element name="customerReference" type="xsd:string"/>
+      <xsd:element name="chargedAmount" type="xsd:integer"/>
+      <xsd:element name="linkToInvoiceScanImage" type="xsd:string"/>
+      <xsd:element name="custoemrNumber" type="xsd:integer"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="billToType">
+    <xsd:sequence>
+      <xsd:element name="name" type="xsd:string"/>
+      <xsd:element name="contact" type="xsd:string"/>
+      <xsd:element name="contractid" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="vendorType">
+    <xsd:sequence>
+      <xsd:element name="name" type="xsd:string"/>
+      <xsd:element name="contact" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="lineItemType">
+    <xsd:sequence>
+      <xsd:element name="line" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="remitToType">
+    <xsd:sequence>
+      <xsd:element name="IBAN" type="xsd:string"/>
+      <xsd:element name="accountNumber" type="xsd:string"/>
+      <xsd:element name="SWFT" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://desktop-4tr95m4:7101/soa-infra/services/default/ocrInvoiceJMSProducer/ServiceJMSProducer</con:endpoint></con:endpoints><con:operation id="422f13f8-4573-4cbd-a679-01e3999caa7e" isOneWay="false" action="produce" name="produce" bindingOperationName="produce" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="30fe5b8c-f28e-4c2e-8b0a-c8a2152589b9" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://desktop-4tr95m4:7101/soa-infra/services/default/ocrInvoiceJMSProducer/ServiceJMSProducer</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:proc="http://www.iconpln.co.id/procure-to-pay">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <proc:ocrInvoice>\r
+         <proc:invoiceData>\r
+            <proc:invoiceDate>2020-02-04T11:32:00.5</proc:invoiceDate>\r
+            <proc:invoiceNumber>123</proc:invoiceNumber>\r
+            <proc:invoiceCurrency>IDR</proc:invoiceCurrency>\r
+            <proc:customerReference>123</proc:customerReference>\r
+            <proc:chargedAmount>500</proc:chargedAmount>\r
+            <proc:linkToInvoiceScanImage></proc:linkToInvoiceScanImage>\r
+            <proc:custoemrNumber>123</proc:custoemrNumber>\r
+         </proc:invoiceData>\r
+         <proc:billTo>\r
+            <proc:name></proc:name>\r
+            <proc:contact></proc:contact>\r
+            <proc:contractid></proc:contractid>\r
+         </proc:billTo>\r
+         <proc:vendor>\r
+            <proc:name></proc:name>\r
+            <proc:contact></proc:contact>\r
+         </proc:vendor>\r
+         <proc:lineItems>\r
+            <proc:line></proc:line>\r
+         </proc:lineItems>\r
+         <proc:remitTo>\r
+            <proc:IBAN></proc:IBAN>\r
+            <proc:accountNumber></proc:accountNumber>\r
+            <proc:SWFT></proc:SWFT>\r
+         </proc:remitTo>\r
+      </proc:ocrInvoice>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="produce"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>
