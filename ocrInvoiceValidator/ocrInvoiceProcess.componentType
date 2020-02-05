@@ -8,4 +8,11 @@
            ui:wsdlLocation="ocrInvoiceProcess.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/ocrInvoiceValidator/ocrInvoiceValidator/ocrInvoiceProcess#wsdl.interface(ocrInvoiceProcess)"/>
   </service>
+  <reference name="partnerMgmtSvc" ui:wsdlLocation="partnerMgmtSvc.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/ocrInvoiceValidator/ocrInvoiceValidator/partnerMgmtSvc#wsdl.interface(partnerMgmtSvc_ptt)"/>
+  </reference>
+  <reference name="invokeValidationRules.invokeValidationRules_DecisionService_1"
+             ui:wsdlLocation="invokeValidationRules_DecisionService_1Wrapper.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/invokeValidationRules/invokeValidationRules_DecisionService_1#wsdl.interface(IDecisionService)"/>
+  </reference>
 </componentType>

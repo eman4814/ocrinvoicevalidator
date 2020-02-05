@@ -1,0 +1,46 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+   <entry key="root_descriptor_alias">CONTRACT</entry>
+   <entry key="CONTRACT.IBAN:db_column_not_null">false</entry>
+   <entry key="VENDOR.VENDORID:db_column_type">NUMBER</entry>
+   <entry key="CONTRACT.VENDOR_ID:db_column_precision">0</entry>
+   <entry key="CONTRACT.VENDOR_ID:db_column_type">NUMBER</entry>
+   <entry key="CONTRACT.SWIFT:db_column_not_null">false</entry>
+   <entry key="CONTRACT.CONTRACT_NUMBER:db_column_not_null">true</entry>
+   <entry key="CONTRACT.REMAIN_VALUE:db_column_type">NUMBER</entry>
+   <entry key="VENDOR:db_table_type">TABLE</entry>
+   <entry key="CONTRACT.ACCOUNT_NUMBER:db_column_type">VARCHAR2</entry>
+   <entry key="CONTRACT.REMAIN_VALUE:db_column_precision">6</entry>
+   <entry key="CONTRACT.SWIFT:db_column_type">VARCHAR2</entry>
+   <entry key="CONTRACT.TOTAL_VALUE:db_column_precision">6</entry>
+   <entry key="CONTRACT.REMAIN_VALUE:db_column_scale">2</entry>
+   <entry key="CONTRACT.REMAIN_VALUE:db_column_not_null">false</entry>
+   <entry key="CONTRACT.CONTRACT_NUMBER:db_column_type">VARCHAR2</entry>
+   <entry key="CONTRACT.ACCOUNT_NUMBER:db_column_size">64</entry>
+   <entry key="CONTRACT.IBAN:db_column_type">VARCHAR2</entry>
+   <entry key="VENDOR.VENDORID:db_column_not_null">true</entry>
+   <entry key="CONTRACT.SWIFT:db_column_size">64</entry>
+   <entry key="VENDOR.VENDORNAME:db_column_not_null">true</entry>
+   <entry key="return_single_result_set">false</entry>
+   <entry key="CONTRACT.CONTRACT_NUMBER:db_column_size">64</entry>
+   <entry key="CONTRACT.IBAN:db_column_size">64</entry>
+   <entry key="VENDOR:db_column_1">VENDORNAME</entry>
+   <entry key="CONTRACT.TOTAL_VALUE:db_column_scale">2</entry>
+   <entry key="CONTRACT:db_table_type">TABLE</entry>
+   <entry key="VENDOR:db_column_0">VENDORID</entry>
+   <entry key="CONTRACT.VENDOR_ID:db_column_not_null">true</entry>
+   <entry key="CONTRACT:db_column_6">ACCOUNT_NUMBER</entry>
+   <entry key="CONTRACT:db_column_5">SWIFT</entry>
+   <entry key="CONTRACT.TOTAL_VALUE:db_column_not_null">false</entry>
+   <entry key="CONTRACT:db_column_4">IBAN</entry>
+   <entry key="CONTRACT:db_column_3">TOTAL_VALUE</entry>
+   <entry key="VENDOR.VENDORNAME:db_column_type">VARCHAR2</entry>
+   <entry key="CONTRACT:db_column_2">REMAIN_VALUE</entry>
+   <entry key="CONTRACT:db_column_1">VENDOR_ID</entry>
+   <entry key="CONTRACT:db_column_0">CONTRACT_NUMBER</entry>
+   <entry key="VENDOR.VENDORID:db_column_precision">0</entry>
+   <entry key="CONTRACT.TOTAL_VALUE:db_column_type">NUMBER</entry>
+   <entry key="VENDOR.VENDORNAME:db_column_size">50</entry>
+   <entry key="CONTRACT.ACCOUNT_NUMBER:db_column_not_null">false</entry>
+</properties>

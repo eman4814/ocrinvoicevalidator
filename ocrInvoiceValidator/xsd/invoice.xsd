@@ -13,6 +13,7 @@
         <xsd:element name="lineItems" type="lineItemType"/>
         <xsd:element name="remitTo" type="remitToType"/>
         <xsd:element name="validationData" type="validationDataType"/>
+        <xsd:element name="remainingValueinContract" type="xsd:integer"/>
       </xsd:sequence>
     </xsd:complexType>
   </xsd:element>

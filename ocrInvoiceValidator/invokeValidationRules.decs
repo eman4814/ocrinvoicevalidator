@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<decisionServices xmlns="http://xmlns.oracle.com/bpel/rules" name="invokeValidationRules">
+    <ruleEngineProvider provider="Oracle_11.0.0.0.0" name="OracleRulesSDK">
+        <repository type="SCA-Archive">
+            <path>ocrInvoiceValidator/oracle/rules/id/co/iconpln/invokeValidationRules.rules</path>
+        </repository>
+    </ruleEngineProvider>
+    <decisionService name="invokeValidationRules_DecisionService_1" ruleEngineProviderReference="OracleRulesSDK" targetNamespace="http://xmlns.oracle.com/invokeValidationRules/invokeValidationRules_DecisionService_1">
+        <catalog>invokeValidationRules</catalog>
+        <pattern name="CallFunctionStateless">
+            <arguments>
+                <call>id.co.iconpln.invokeValidationRules.invokeValidationRules_DecisionService_1</call>
+            </arguments>
+        </pattern>
+        <pattern name="CallFunctionStateful">
+            <arguments>
+                <call>id.co.iconpln.invokeValidationRules.invokeValidationRules_DecisionService_1</call>
+            </arguments>
+        </pattern>
+    </decisionService>
+    <schemaInformation>
+        <dictionary fqnPackage="id.co.iconpln" fqnName="invokeValidationRules" updateNumber="143">
+            <schemaBrowser>
+                <package>id.co.iconpln.procure_to_pay</package>
+                <namespace>http://www.iconpln.co.id/procure-to-pay</namespace>
+            </schemaBrowser>
+            <schemaImport namespace="http://www.iconpln.co.id/procure-to-pay" localPart="invoice.xsd" schemaLocation="xsd/invoice.xsd" package="id.co.iconpln.procure_to_pay">
+                <import namespace="http://www.iconpln.co.id/procure-to-pay" localPart="invoice.xsd"/>
+                <import namespace="http://www.iconpln.co.id/procure-to-pay" localPart="ocrInvoice.xsd"/>
+            </schemaImport>
+        </dictionary>
+    </schemaInformation>
+</decisionServices>

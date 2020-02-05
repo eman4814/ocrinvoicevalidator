@@ -14,7 +14,7 @@
   <billTo>
     <name></name>
     <contact></contact>
-    <contractid></contractid>
+    <contractid>Contract123</contractid>
   </billTo>
   <vendor>
     <name></name>

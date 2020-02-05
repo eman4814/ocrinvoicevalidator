@@ -1,0 +1,14 @@
+<adapter-config name="partnerMgmtSvc" adapter="Database Adapter" wsdlLocation="partnerMgmtSvc.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory location="eis/db/sampledb" UIConnectionName="sampledb" adapterRef=""/>
+  <endpoint-interaction portType="partnerMgmtSvc_ptt" operation="partnerMgmtSvcSelect">
+    <interaction-spec className="oracle.tip.adapter.db.DBReadInteractionSpec">
+      <property name="DescriptorName" value="partnerMgmtSvc.Contract"/>
+      <property name="QueryName" value="partnerMgmtSvcSelect"/>
+      <property name="MappingsMetaDataURL" value="partnerMgmtSvc-or-mappings.xml"/>
+      <property name="ReturnSingleResultSet" value="false"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>

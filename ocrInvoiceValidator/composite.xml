@@ -14,6 +14,14 @@
           location="JMSQueueConsumer.wsdl" importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/ocrInvoiceValidator/ocrInvoiceValidator/ocrInvoiceProcess"
           location="ocrInvoiceProcess.wsdl" importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/ocrInvoiceValidator/ocrInvoiceValidator/partnerMgmtSvc"
+          location="partnerMgmtSvc.wsdl" importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/invokeValidationRules/invokeValidationRules_DecisionService_1"
+          location="invokeValidationRules_DecisionService_1.wsdl"
+          importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/invokeValidationRules/invokeValidationRules_DecisionService_1"
+          location="invokeValidationRules_DecisionService_1Wrapper.wsdl"
+          importType="wsdl"/>
   <service name="JMSQueueConsumer" ui:wsdlLocation="JMSQueueConsumer.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/jms/ocrInvoiceValidator/ocrInvoiceValidator/JMSQueueConsumer#wsdl.interface(Consume_Message_ptt)"/>
     <binding.jca config="JMSQueueConsumer_jms.jca"/>
@@ -27,6 +35,20 @@
     <property name="bpel.config.oneWayDeliveryPolicy" type="xs:string"
               many="false">async.persist</property>
   </component>
+  <component name="invokeValidationRules">
+    <implementation.decision src="invokeValidationRules.decs"/>
+  </component>
+  <reference name="partnerMgmtSvc" ui:wsdlLocation="partnerMgmtSvc.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/ocrInvoiceValidator/ocrInvoiceValidator/partnerMgmtSvc#wsdl.interface(partnerMgmtSvc_ptt)"/>
+    <binding.jca config="partnerMgmtSvc_db.jca"/>
+    <property name="jca.retry.count" type="xs:int" many="false" override="may">4</property>
+    <property name="jca.retry.interval" type="xs:int" many="false"
+              override="may">1</property>
+    <property name="jca.retry.backoff" type="xs:int" many="false"
+              override="may">2</property>
+    <property name="jca.retry.maxInterval" type="xs:string" many="false"
+              override="may">120</property>
+  </reference>
   <wire>
     <source.uri>JMSQueueConsumer</source.uri>
     <target.uri>ocrInvoiceMediator/ocrInvoiceMediator</target.uri>
@@ -34,5 +56,13 @@
   <wire>
     <source.uri>ocrInvoiceMediator/ocrInvoiceProcess.ocrinvoiceprocess_client</source.uri>
     <target.uri>ocrInvoiceProcess/ocrinvoiceprocess_client</target.uri>
+  </wire>
+  <wire>
+    <source.uri>ocrInvoiceProcess/partnerMgmtSvc</source.uri>
+    <target.uri>partnerMgmtSvc</target.uri>
+  </wire>
+  <wire>
+    <source.uri>ocrInvoiceProcess/invokeValidationRules.invokeValidationRules_DecisionService_1</source.uri>
+    <target.uri>invokeValidationRules/invokeValidationRules_DecisionService_1</target.uri>
   </wire>
 </composite>
