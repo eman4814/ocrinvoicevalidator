@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="11.1.1.64.93"
+          id="invoiceDataType"
+          Package="CorrectInvalidInvoiceManualGUI_CorrectInvalidInvoice"
+          BeanClass="CorrectInvalidInvoiceManualGUI_CorrectInvalidInvoice.invoiceDataType"
+          isJavaBased="false">
+  <Attribute Name="invoiceDate" Type="java.sql.Timestamp">
+    <Properties>
+      <CustomProperties>
+        <Property Name="nextSiblingNamespace"
+                  Value="http://www.iconpln.co.id/procure-to-pay"/>
+        <Property Name="nextSibling" Value="invoiceNumber"/>
+        <Property Name="minOccurs" Value="1"/>
+        <Property Name="maxOccurs" Value="1"/>
+        <Property Name="LABEL" Value="Invoice Date"/>
+        <Property Name="LeafElement_hint" Value="LeafElement_no_attribute"/>
+        <Property Name="nillable" Value="false"/>
+        <Property Name="originalName" Value="invoiceDate"/>
+        <Property Name="targetNamespace"
+                  Value="http://www.iconpln.co.id/procure-to-pay"/>
+        <Property Name="type" Value="dateTime"/>
+      </CustomProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="invoiceNumber" Type="java.math.BigInteger">
+    <Properties>
+      <CustomProperties>
+        <Property Name="nextSiblingNamespace"
+                  Value="http://www.iconpln.co.id/procure-to-pay"/>
+        <Property Name="nextSibling" Value="invoiceCurrency"/>
+        <Property Name="minOccurs" Value="1"/>
+        <Property Name="fractionDigits" Value="0"/>
+        <Property Name="maxOccurs" Value="1"/>
+        <Property Name="LABEL" Value="Invoice Number"/>
+        <Property Name="LeafElement_hint" Value="LeafElement_no_attribute"/>
+        <Property Name="nillable" Value="false"/>
+        <Property Name="originalName" Value="invoiceNumber"/>
+        <Property Name="targetNamespace"
+                  Value="http://www.iconpln.co.id/procure-to-pay"/>
+        <Property Name="type" Value="java.math.BigInteger"/>
+      </CustomProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="invoiceCurrency" Type="java.lang.String">
+    <Properties>
+      <CustomProperties>
+        <Property Name="nextSiblingNamespace"
+                  Value="http://www.iconpln.co.id/procure-to-pay"/>
+        <Property Name="nextSibling" Value="customerReference"/>
+        <Property Name="minOccurs" Value="1"/>
+        <Property Name="maxOccurs" Value="1"/>
+        <Property Name="LABEL" Value="Invoice Currency"/>
+        <Property Name="LeafElement_hint" Value="LeafElement_no_attribute"/>
+        <Property Name="nillable" Value="false"/>
+        <Property Name="originalName" Value="invoiceCurrency"/>
+        <Property Name="targetNamespace"
+                  Value="http://www.iconpln.co.id/procure-to-pay"/>
+        <Property Name="type" Value="java.lang.String"/>
+      </CustomProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="customerReference" Type="java.lang.String">
+    <Properties>
+      <CustomProperties>
+        <Property Name="nextSiblingNamespace"
+                  Value="http://www.iconpln.co.id/procure-to-pay"/>
+        <Property Name="nextSibling" Value="chargedAmount"/>
+        <Property Name="minOccurs" Value="1"/>
+        <Property Name="maxOccurs" Value="1"/>
+        <Property Name="LABEL" Value="Customer Reference"/>
+        <Property Name="LeafElement_hint" Value="LeafElement_no_attribute"/>
+        <Property Name="nillable" Value="false"/>
+        <Property Name="originalName" Value="customerReference"/>
+        <Property Name="targetNamespace"
+                  Value="http://www.iconpln.co.id/procure-to-pay"/>
+        <Property Name="type" Value="java.lang.String"/>
+      </CustomProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="chargedAmount" Type="java.math.BigInteger">
+    <Properties>
+      <CustomProperties>
+        <Property Name="nextSiblingNamespace"
+                  Value="http://www.iconpln.co.id/procure-to-pay"/>
+        <Property Name="nextSibling" Value="linkToInvoiceScanImage"/>
+        <Property Name="minOccurs" Value="1"/>
+        <Property Name="fractionDigits" Value="0"/>
+        <Property Name="maxOccurs" Value="1"/>
+        <Property Name="LABEL" Value="Charged Amount"/>
+        <Property Name="LeafElement_hint" Value="LeafElement_no_attribute"/>
+        <Property Name="nillable" Value="false"/>
+        <Property Name="originalName" Value="chargedAmount"/>
+        <Property Name="targetNamespace"
+                  Value="http://www.iconpln.co.id/procure-to-pay"/>
+        <Property Name="type" Value="java.math.BigInteger"/>
+      </CustomProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="linkToInvoiceScanImage" Type="java.lang.String">
+    <Properties>
+      <CustomProperties>
+        <Property Name="nextSiblingNamespace"
+                  Value="http://www.iconpln.co.id/procure-to-pay"/>
+        <Property Name="nextSibling" Value="custoemrNumber"/>
+        <Property Name="minOccurs" Value="1"/>
+        <Property Name="maxOccurs" Value="1"/>
+        <Property Name="LABEL" Value="Link To Invoice Scan Image"/>
+        <Property Name="LeafElement_hint" Value="LeafElement_no_attribute"/>
+        <Property Name="nillable" Value="false"/>
+        <Property Name="originalName" Value="linkToInvoiceScanImage"/>
+        <Property Name="targetNamespace"
+                  Value="http://www.iconpln.co.id/procure-to-pay"/>
+        <Property Name="type" Value="java.lang.String"/>
+      </CustomProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="custoemrNumber" Type="java.math.BigInteger">
+    <Properties>
+      <CustomProperties>
+        <Property Name="minOccurs" Value="1"/>
+        <Property Name="fractionDigits" Value="0"/>
+        <Property Name="maxOccurs" Value="1"/>
+        <Property Name="LABEL" Value="Custoemr Number"/>
+        <Property Name="LeafElement_hint" Value="LeafElement_no_attribute"/>
+        <Property Name="nillable" Value="false"/>
+        <Property Name="originalName" Value="custoemrNumber"/>
+        <Property Name="targetNamespace"
+                  Value="http://www.iconpln.co.id/procure-to-pay"/>
+        <Property Name="type" Value="java.math.BigInteger"/>
+      </CustomProperties>
+    </Properties>
+  </Attribute>
+</JavaBean>

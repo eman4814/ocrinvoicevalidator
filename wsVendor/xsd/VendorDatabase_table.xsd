@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/insertVendor" xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/top/insertVendor" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="VendorCollection" type="VendorCollection"/>
+   <xs:complexType name="VendorCollection">
+      <xs:sequence>
+         <xs:element name="Vendor" type="Vendor" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Vendor">
+      <xs:sequence>
+         <xs:element name="vendorid" type="xs:decimal"/>
+         <xs:element name="vendorname" minOccurs="0">
+            <xs:simpleType>
+               <xs:restriction base="xs:string">
+                  <xs:maxLength value="50"/>
+               </xs:restriction>
+            </xs:simpleType>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="VendorDatabaseSelect_pVendorIdInputParameters" type="VendorDatabaseSelect_pVendorId"/>
+   <xs:complexType name="VendorDatabaseSelect_pVendorId">
+      <xs:sequence>
+         <xs:element name="pVendorId" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="11.1.1.64.93"
+          id="remitToType"
+          Package="CorrectInvalidInvoiceManualGUI_CorrectInvalidInvoice"
+          BeanClass="CorrectInvalidInvoiceManualGUI_CorrectInvalidInvoice.remitToType"
+          isJavaBased="false">
+  <Attribute Name="IBAN" Type="java.lang.String">
+    <Properties>
+      <CustomProperties>
+        <Property Name="nextSiblingNamespace"
+                  Value="http://www.iconpln.co.id/procure-to-pay"/>
+        <Property Name="nextSibling" Value="accountNumber"/>
+        <Property Name="minOccurs" Value="1"/>
+        <Property Name="maxOccurs" Value="1"/>
+        <Property Name="LABEL" Value="IBAN"/>
+        <Property Name="LeafElement_hint" Value="LeafElement_no_attribute"/>
+        <Property Name="nillable" Value="false"/>
+        <Property Name="originalName" Value="IBAN"/>
+        <Property Name="targetNamespace"
+                  Value="http://www.iconpln.co.id/procure-to-pay"/>
+        <Property Name="type" Value="java.lang.String"/>
+      </CustomProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="accountNumber" Type="java.lang.String">
+    <Properties>
+      <CustomProperties>
+        <Property Name="nextSiblingNamespace"
+                  Value="http://www.iconpln.co.id/procure-to-pay"/>
+        <Property Name="nextSibling" Value="SWFT"/>
+        <Property Name="minOccurs" Value="1"/>
+        <Property Name="maxOccurs" Value="1"/>
+        <Property Name="LABEL" Value="Account Number"/>
+        <Property Name="LeafElement_hint" Value="LeafElement_no_attribute"/>
+        <Property Name="nillable" Value="false"/>
+        <Property Name="originalName" Value="accountNumber"/>
+        <Property Name="targetNamespace"
+                  Value="http://www.iconpln.co.id/procure-to-pay"/>
+        <Property Name="type" Value="java.lang.String"/>
+      </CustomProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="SWFT" Type="java.lang.String">
+    <Properties>
+      <CustomProperties>
+        <Property Name="minOccurs" Value="1"/>
+        <Property Name="maxOccurs" Value="1"/>
+        <Property Name="LABEL" Value="SWFT"/>
+        <Property Name="LeafElement_hint" Value="LeafElement_no_attribute"/>
+        <Property Name="nillable" Value="false"/>
+        <Property Name="originalName" Value="SWFT"/>
+        <Property Name="targetNamespace"
+                  Value="http://www.iconpln.co.id/procure-to-pay"/>
+        <Property Name="type" Value="java.lang.String"/>
+      </CustomProperties>
+    </Properties>
+  </Attribute>
+</JavaBean>

@@ -31,7 +31,12 @@
          xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
          xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
          xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:ns6="http://xmlns.oracle.com/bpel/workflow/taskService"
+         xmlns:task="http://xmlns.oracle.com/bpel/workflow/task"
+         xmlns:wfcommon="http://xmlns.oracle.com/bpel/workflow/common"
+         xmlns:wf="http://schemas.oracle.com/bpel/extensions/workflow"
+         xmlns:ns7="http://xmlns.oracle.com/bpel/workflow/TaskEvidenceService">
 
   <import namespace="http://xmlns.oracle.com/ocrInvoiceValidator/ocrInvoiceValidator/ocrInvoiceProcess" location="ocrInvoiceProcess.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
   <!-- 
@@ -52,6 +57,9 @@
     <partnerLink name="invokeValidationRules.invokeValidationRules_DecisionService_1"
                  partnerLinkType="ns4:invokeValidationRules.invokeValidationRules_DecisionService_1"
                  partnerRole="IDecisionService"/>
+    <partnerLink name="CorrectInvalidInvoice.TaskService"
+                 partnerLinkType="ns6:TaskService" partnerRole="TaskService"
+                 myRole="TaskServiceCallbackListener"/>
   </partnerLinks>
 
   <!-- 
@@ -67,6 +75,8 @@
               messageType="ns1:partnerMgmtSvcSelect_inputParameters"/>
     <variable name="Invoke1_partnerMgmtSvcSelect_OutputVariable"
               messageType="ns1:ContractCollection_msg"/>
+    <variable name="CorrectInvalidInvoice1_globalVariable"
+              messageType="ns6:taskMessage"/>
   </variables>
 
   <!-- 
@@ -131,8 +141,8 @@
                 outputVariable="dsOut"/>
         <assign name="Rule_Service_To_Facts">
           <copy>
-            <from>$dsOut.payload/ns4:resultList/ns3:invoice/ns3:validationData/ns3:validated</from>
-            <to>$inputVariable.payload/ns3:validationData/ns3:validated</to>
+            <from>$dsOut.payload/ns4:resultList/ns3:invoice</from>
+            <to>$inputVariable.payload</to>
           </copy>
         </assign>
       </sequence>
@@ -141,10 +151,128 @@
       <documentation>
         <![CDATA[valid invoice]]>
       </documentation>
-      <condition>$inputVariable.payload/ns3:validationData/ns3:validated = true()</condition>
-      <empty name="Empty1"/>
+      <condition>$inputVariable.payload/ns3:validationData/ns3:validated= 'true'</condition>
+      <sequence name="Sequence3">
+        <assign name="AssignAutomatic">
+          <copy>
+            <from>"Automatic"</from>
+            <to>$inputVariable.payload/ns3:validationData/ns3:validationText</to>
+          </copy>
+        </assign>
+      </sequence>
       <else>
-        <empty name="Empty2"/>
+        <sequence name="Sequence2">
+          <scope name="CorrectInvalidInvoice2"
+                 xmlns:wf="http://schemas.oracle.com/bpel/extensions/workflow"
+                 wf:key="CorrectInvalidInvoice1_globalVariable">
+            <bpelx:annotation>
+              <bpelx:pattern patternName="bpelx:workflow"/>
+            </bpelx:annotation>
+            <variables>
+              <variable name="initiateTaskInput"
+                        messageType="ns6:initiateTaskMessage"/>
+              <variable name="initiateTaskResponseMessage"
+                        messageType="ns6:initiateTaskResponseMessage"/>
+            </variables>
+            <sequence>
+              <assign name="CorrectInvalidInvoice2_AssignTaskAttributes">
+                <copy>
+                  <from>number(3)</from>
+                  <to>$initiateTaskInput.payload/task:task/task:priority</to>
+                </copy>
+                <copy>
+                  <from>number(3)</from>
+                  <to>$initiateTaskInput.payload/task:task/task:priority</to>
+                </copy>
+                <copy>
+                  <from><literal><payload xmlns="http://xmlns.oracle.com/bpel/workflow/task">
+	<invoice xmlns="http://www.iconpln.co.id/procure-to-pay"/> 
+</payload></literal></from>
+                  <to>$initiateTaskInput.payload/task:task/task:payload</to>
+                </copy>
+                <copy>
+                  <from>$inputVariable.payload</from>
+                  <to>$initiateTaskInput.payload/task:task/task:payload/ns3:invoice</to>
+                </copy>
+              </assign>
+              <invoke name="initiateTask_CorrectInvalidInvoice2"
+                      partnerLink="CorrectInvalidInvoice.TaskService"
+                      operation="initiateTask" portType="ns6:TaskService"
+                      inputVariable="initiateTaskInput"
+                      outputVariable="initiateTaskResponseMessage"/>
+              <receive name="receiveCompletedTask_CorrectInvalidInvoice2"
+                       partnerLink="CorrectInvalidInvoice.TaskService"
+                       portType="ns6:TaskServiceCallback"
+                       operation="onTaskCompleted"
+                       variable="CorrectInvalidInvoice1_globalVariable"
+                       createInstance="no"/>
+            </sequence>
+          </scope>
+          <if name="taskIf">
+            <documentation>
+              <![CDATA[Task outcome is APPROVE]]>
+            </documentation>
+            <bpelx:annotation>
+              <bpelx:pattern patternName="Task outcome is APPROVE"/>
+            </bpelx:annotation>
+            <condition>$CorrectInvalidInvoice1_globalVariable.payload/task:systemAttributes/task:outcome = 'APPROVE'</condition>
+            <sequence>
+              <assign name="CopyPayloadFromTask">
+                <copy>
+                  <from>$CorrectInvalidInvoice1_globalVariable.payload/task:payload/ns3:invoice</from>
+                  <to>$inputVariable.payload</to>
+                </copy>
+              </assign>
+              <assign name="AssignApprove">
+                <copy>
+                  <from>true()</from>
+                  <to>$inputVariable.payload/ns3:validationData/ns3:validated</to>
+                </copy>
+                <copy>
+                  <from>"Manual"</from>
+                  <to>$inputVariable.payload/ns3:validationData/ns3:validationText</to>
+                </copy>
+              </assign>
+            </sequence>
+            <elseif>
+              <documentation>
+                <![CDATA[Task outcome is REJECT]]>
+              </documentation>
+              <bpelx:annotation>
+                <bpelx:pattern patternName="Task outcome is REJECT"/>
+              </bpelx:annotation>
+              <condition>$CorrectInvalidInvoice1_globalVariable.payload/task:systemAttributes/task:outcome = 'REJECT'</condition>
+              <sequence>
+                <assign name="CopyPayloadFromTask">
+                  <copy>
+                    <from>$CorrectInvalidInvoice1_globalVariable.payload/task:payload/ns3:invoice</from>
+                    <to>$inputVariable.payload</to>
+                  </copy>
+                </assign>
+                <assign name="AssignReject">
+                  <copy>
+                    <from>false()</from>
+                    <to>$inputVariable.payload/ns3:validationData/ns3:validated</to>
+                  </copy>
+                  <copy>
+                    <from>"Reject"</from>
+                    <to>$inputVariable.payload/ns3:validationData/ns3:validationText</to>
+                  </copy>
+                </assign>
+              </sequence>
+            </elseif>
+            <else>
+              <sequence>
+                <assign name="CopyPayloadFromTask">
+                  <copy>
+                    <from>$CorrectInvalidInvoice1_globalVariable.payload/task:payload/ns3:invoice</from>
+                    <to>$inputVariable.payload</to>
+                  </copy>
+                </assign>
+              </sequence>
+            </else>
+          </if>
+        </sequence>
       </else>
     </if>
   </sequence>

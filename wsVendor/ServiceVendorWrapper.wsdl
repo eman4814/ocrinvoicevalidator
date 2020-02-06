@@ -1,0 +1,16 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions
+     name="ServiceVendor"
+     targetNamespace="http://oracle.com/sca/soapservice/ocrInvoiceValidator/wsVendor/ServiceVendor"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:bpws="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+     xmlns:tns="http://oracle.com/sca/soapservice/ocrInvoiceValidator/wsVendor/ServiceVendor"
+     xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
+    >
+    <plnk:partnerLinkType name="ServiceVendor">
+        <plnk:role name="VendorInterface" portType="tns:VendorInterface"/>
+    </plnk:partnerLinkType>
+    <wsdl:import namespace="http://oracle.com/sca/soapservice/ocrInvoiceValidator/wsVendor/ServiceVendor"
+         location="ServiceVendor.wsdl"/>
+</wsdl:definitions>

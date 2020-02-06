@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="11.1.1.64.93"
+          id="lineItemType"
+          Package="CorrectInvalidInvoiceManualGUI_CorrectInvalidInvoice"
+          BeanClass="CorrectInvalidInvoiceManualGUI_CorrectInvalidInvoice.lineItemType"
+          isJavaBased="false">
+  <Attribute Name="line" Type="java.lang.String">
+    <Properties>
+      <CustomProperties>
+        <Property Name="minOccurs" Value="1"/>
+        <Property Name="maxOccurs" Value="1"/>
+        <Property Name="LABEL" Value="Line"/>
+        <Property Name="LeafElement_hint" Value="LeafElement_no_attribute"/>
+        <Property Name="nillable" Value="false"/>
+        <Property Name="originalName" Value="line"/>
+        <Property Name="targetNamespace"
+                  Value="http://www.iconpln.co.id/procure-to-pay"/>
+        <Property Name="type" Value="java.lang.String"/>
+      </CustomProperties>
+    </Properties>
+  </Attribute>
+</JavaBean>

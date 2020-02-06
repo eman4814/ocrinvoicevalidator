@@ -22,6 +22,9 @@
   <import namespace="http://xmlns.oracle.com/invokeValidationRules/invokeValidationRules_DecisionService_1"
           location="invokeValidationRules_DecisionService_1Wrapper.wsdl"
           importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/bpel/workflow/taskService"
+          location="oramds:/soa/shared/workflow/TaskServiceInterface.wsdl"
+          importType="wsdl"/>
   <service name="JMSQueueConsumer" ui:wsdlLocation="JMSQueueConsumer.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/jms/ocrInvoiceValidator/ocrInvoiceValidator/JMSQueueConsumer#wsdl.interface(Consume_Message_ptt)"/>
     <binding.jca config="JMSQueueConsumer_jms.jca"/>
@@ -37,6 +40,9 @@
   </component>
   <component name="invokeValidationRules">
     <implementation.decision src="invokeValidationRules.decs"/>
+  </component>
+  <component name="CorrectInvalidInvoice">
+    <implementation.workflow src="CorrectInvalidInvoice.task"/>
   </component>
   <reference name="partnerMgmtSvc" ui:wsdlLocation="partnerMgmtSvc.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/ocrInvoiceValidator/ocrInvoiceValidator/partnerMgmtSvc#wsdl.interface(partnerMgmtSvc_ptt)"/>
@@ -64,5 +70,9 @@
   <wire>
     <source.uri>ocrInvoiceProcess/invokeValidationRules.invokeValidationRules_DecisionService_1</source.uri>
     <target.uri>invokeValidationRules/invokeValidationRules_DecisionService_1</target.uri>
+  </wire>
+  <wire>
+    <source.uri>ocrInvoiceProcess/CorrectInvalidInvoice.TaskService</source.uri>
+    <target.uri>CorrectInvalidInvoice/TaskService</target.uri>
   </wire>
 </composite>

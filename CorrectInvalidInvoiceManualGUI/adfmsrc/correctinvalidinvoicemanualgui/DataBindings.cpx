@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application"
+             version="11.1.1.64.93" id="DataBindings" SeparateXMLFiles="false"
+             Package="correctinvalidinvoicemanualgui" ClientType="Generic">
+  <pageMap>
+    <page path="/taskDetails1.jspx"
+          usageId="correctinvalidinvoicemanualgui_taskDetails1PageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="correctinvalidinvoicemanualgui_taskDetails1PageDef"
+          path="correctinvalidinvoicemanualgui.pageDefs.taskDetails1PageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <dc id="CorrectInvalidInvoiceManualGUI_CorrectInvalidInvoice"
+        path="correctinvalidinvoicemanualgui.CorrectInvalidInvoiceManualGUI_CorrectInvalidInvoice"/>
+  </dataControlUsages>
+</Application>

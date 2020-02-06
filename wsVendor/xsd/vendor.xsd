@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://www.iconpln.co.id"
+            targetNamespace="http://www.iconpln.co.id"
+            elementFormDefault="qualified">
+  <xsd:element name="insert">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="vendorName" type="xsd:string"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="update" type="vendorType"/>
+  <xsd:element name="deleteById">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="vendorId" type="xsd:integer"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="getById">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="vendorId" type="xsd:integer"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:complexType name="vendorType">
+    <xsd:sequence>
+      <xsd:element name="vendorId" type="xsd:integer"/>
+      <xsd:element name="vendorName" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="collectionType">
+    <xsd:sequence>
+      <xsd:element name="vendor" type="vendorType" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="view" type="collectionType"/>
+</xsd:schema>

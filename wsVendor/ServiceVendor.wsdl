@@ -1,0 +1,44 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions
+     name="ServiceVendor"
+     targetNamespace="http://oracle.com/sca/soapservice/ocrInvoiceValidator/wsVendor/ServiceVendor"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:inp1="http://www.iconpln.co.id"
+     xmlns:tns="http://oracle.com/sca/soapservice/ocrInvoiceValidator/wsVendor/ServiceVendor"
+    >
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://www.iconpln.co.id" schemaLocation="xsd/vendor.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="getByIdRequest">
+        <wsdl:part name="input" element="inp1:getById"/>
+    </wsdl:message>
+    <wsdl:message name="getByIdResponse">
+        <wsdl:part name="response" element="inp1:view"/>
+    </wsdl:message>
+    <wsdl:message name="insertRequest">
+        <wsdl:part name="request" element="inp1:insert"/>
+    </wsdl:message>
+    <wsdl:portType name="VendorInterface">
+        <wsdl:operation name="getById">
+            <wsdl:input message="tns:getByIdRequest"/>
+            <wsdl:output message="tns:getByIdResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="insert">
+            <wsdl:input message="tns:insertRequest"/>
+        </wsdl:operation>
+        <wsdl:operation name="update">
+            <wsdl:input message="tns:updateRequest"/>
+        </wsdl:operation>
+        <wsdl:operation name="deleteById">
+            <wsdl:input message="tns:deleteByIdRequest"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:message name="updateRequest">
+        <wsdl:part name="request" element="inp1:update"/>
+    </wsdl:message>
+    <wsdl:message name="deleteByIdRequest">
+        <wsdl:part name="request" element="inp1:deleteById"/>
+    </wsdl:message>
+</wsdl:definitions>

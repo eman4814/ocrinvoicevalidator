@@ -24,7 +24,8 @@
                 <package>id.co.iconpln.procure_to_pay</package>
                 <namespace>http://www.iconpln.co.id/procure-to-pay</namespace>
             </schemaBrowser>
-            <schemaImport namespace="http://www.iconpln.co.id/procure-to-pay" localPart="invoice.xsd" schemaLocation="xsd/invoice.xsd" package="id.co.iconpln.procure_to_pay">
+            <schemaImport namespace="http://xmlns.oracle.com/bpel/workflow/task" localPart="invoice.xsd" schemaLocation="xsd/CorrectInvalidInvoicePayload.xsd" package="">
+                <import namespace="http://xmlns.oracle.com/bpel/workflow/task" localPart="invoice.xsd"/>
                 <import namespace="http://www.iconpln.co.id/procure-to-pay" localPart="invoice.xsd"/>
                 <import namespace="http://www.iconpln.co.id/procure-to-pay" localPart="ocrInvoice.xsd"/>
             </schemaImport>

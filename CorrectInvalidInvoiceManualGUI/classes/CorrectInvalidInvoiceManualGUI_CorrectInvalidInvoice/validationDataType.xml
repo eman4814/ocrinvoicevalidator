@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="11.1.1.64.93"
+          id="validationDataType"
+          Package="CorrectInvalidInvoiceManualGUI_CorrectInvalidInvoice"
+          BeanClass="CorrectInvalidInvoiceManualGUI_CorrectInvalidInvoice.validationDataType"
+          isJavaBased="false">
+  <Attribute Name="validated" Type="java.lang.Boolean">
+    <Properties>
+      <CustomProperties>
+        <Property Name="nextSiblingNamespace"
+                  Value="http://www.iconpln.co.id/procure-to-pay"/>
+        <Property Name="nextSibling" Value="validationText"/>
+        <Property Name="minOccurs" Value="1"/>
+        <Property Name="maxOccurs" Value="1"/>
+        <Property Name="LABEL" Value="Validated"/>
+        <Property Name="LeafElement_hint" Value="LeafElement_no_attribute"/>
+        <Property Name="nillable" Value="false"/>
+        <Property Name="originalName" Value="validated"/>
+        <Property Name="targetNamespace"
+                  Value="http://www.iconpln.co.id/procure-to-pay"/>
+        <Property Name="type" Value="java.lang.Boolean"/>
+      </CustomProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="validationText" Type="java.lang.String">
+    <Properties>
+      <CustomProperties>
+        <Property Name="nextSiblingNamespace"
+                  Value="http://www.iconpln.co.id/procure-to-pay"/>
+        <Property Name="nextSibling" Value="handler"/>
+        <Property Name="minOccurs" Value="1"/>
+        <Property Name="maxOccurs" Value="1"/>
+        <Property Name="LABEL" Value="Validation Text"/>
+        <Property Name="LeafElement_hint" Value="LeafElement_no_attribute"/>
+        <Property Name="nillable" Value="false"/>
+        <Property Name="originalName" Value="validationText"/>
+        <Property Name="targetNamespace"
+                  Value="http://www.iconpln.co.id/procure-to-pay"/>
+        <Property Name="type" Value="java.lang.String"/>
+      </CustomProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="handler" Type="java.lang.String">
+    <Properties>
+      <CustomProperties>
+        <Property Name="minOccurs" Value="1"/>
+        <Property Name="maxOccurs" Value="1"/>
+        <Property Name="LABEL" Value="Handler"/>
+        <Property Name="LeafElement_hint" Value="LeafElement_no_attribute"/>
+        <Property Name="nillable" Value="false"/>
+        <Property Name="originalName" Value="handler"/>
+        <Property Name="targetNamespace"
+                  Value="http://www.iconpln.co.id/procure-to-pay"/>
+        <Property Name="type" Value="java.lang.String"/>
+      </CustomProperties>
+    </Properties>
+  </Attribute>
+</JavaBean>

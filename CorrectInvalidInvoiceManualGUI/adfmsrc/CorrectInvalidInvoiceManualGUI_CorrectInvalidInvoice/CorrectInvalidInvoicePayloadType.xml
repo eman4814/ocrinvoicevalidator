@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="11.1.1.64.93"
+          id="CorrectInvalidInvoicePayloadType"
+          Package="CorrectInvalidInvoiceManualGUI_CorrectInvalidInvoice"
+          BeanClass="CorrectInvalidInvoiceManualGUI_CorrectInvalidInvoice.CorrectInvalidInvoicePayloadType"
+          isJavaBased="false">
+  <AccessorAttribute id="invoice" IsCollection="true"
+                     BeanClass="CorrectInvalidInvoiceManualGUI_CorrectInvalidInvoice.invoice"
+                     CollectionBeanClass="CorrectInvalidInvoiceManualGUI_CorrectInvalidInvoice.invoice_invoice_Operations">
+    <Properties>
+      <Property Name="minOccurs" Value="1"/>
+      <Property Name="maxOccurs" Value="1"/>
+      <Property Name="LABEL" Value="Invoice"/>
+      <Property Name="nillable" Value="false"/>
+      <Property Name="originalName" Value="invoice"/>
+      <Property Name="targetNamespace"
+                Value="http://www.iconpln.co.id/procure-to-pay"/>
+    </Properties>
+  </AccessorAttribute>
+</JavaBean>

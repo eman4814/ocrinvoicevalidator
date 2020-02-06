@@ -1,0 +1,37 @@
+<?binding.jca VendorDatabase_db.jca?>
+<wsdl:definitions name="VendorDatabase" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/ocrInvoiceValidator/wsVendor/VendorDatabase" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:top="http://xmlns.oracle.com/pcbpel/adapter/db/top/insertVendor" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/ocrInvoiceValidator/wsVendor/VendorDatabase" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/">
+    <plt:partnerLinkType name="VendorDatabase_plt">
+        <plt:role name="VendorDatabase_role">
+            <plt:portType name="tns:VendorDatabase_ptt"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/insertVendor" schemaLocation="xsd/VendorDatabase_table.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="VendorCollection_msg">
+        <wsdl:part name="VendorCollection" element="top:VendorCollection"/>
+    </wsdl:message>
+    <wsdl:message name="VendorDatabaseSelect_inputParameters">
+        <wsdl:part name="VendorDatabaseSelect_inputParameters" element="top:VendorDatabaseSelect_pVendorIdInputParameters"/>
+    </wsdl:message>
+    <wsdl:portType name="VendorDatabase_ptt">
+        <wsdl:operation name="merge">
+            <wsdl:input message="tns:VendorCollection_msg"/>
+        </wsdl:operation>
+        <wsdl:operation name="insert">
+            <wsdl:input message="tns:VendorCollection_msg"/>
+        </wsdl:operation>
+        <wsdl:operation name="update">
+            <wsdl:input message="tns:VendorCollection_msg"/>
+        </wsdl:operation>
+        <wsdl:operation name="delete">
+            <wsdl:input message="tns:VendorCollection_msg"/>
+        </wsdl:operation>
+        <wsdl:operation name="VendorDatabaseSelect">
+            <wsdl:input message="tns:VendorDatabaseSelect_inputParameters"/>
+            <wsdl:output message="tns:VendorCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

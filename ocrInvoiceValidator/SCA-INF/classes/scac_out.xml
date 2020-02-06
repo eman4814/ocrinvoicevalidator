@@ -3,7 +3,17 @@
    <Fault>
       <severity>warning</severity>
       <loc/>
-      <line>101</line>
+      <line/>
+      <col/>
+      <file>CorrectInvalidInvoice.task</file>
+      <name>CorrectInvalidInvoice.task</name>
+      <fix/>
+      <msg>Error assignee not specified</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>111</line>
       <col/>
       <file>ocrInvoiceProcess.bpel</file>
       <name>ocrInvoiceProcess.bpel</name>

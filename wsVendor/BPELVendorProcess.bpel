@@ -1,0 +1,162 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Wed Feb 05 20:24:51 ICT 2020
+  Author:  USER
+  Type: BPEL 2.0 Process
+  Purpose: Empty BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="BPELVendorProcess"
+               targetNamespace="http://xmlns.oracle.com/ocrInvoiceValidator/wsVendor/BPELVendorProcess"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="http://xmlns.oracle.com/ocrInvoiceValidator/wsVendor/BPELVendorProcess"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ns1="http://oracle.com/sca/soapservice/ocrInvoiceValidator/wsVendor/ServiceVendor"
+         xmlns:ns2="http://xmlns.oracle.com/pcbpel/adapter/db/ocrInvoiceValidator/wsVendor/VendorDatabase"
+         xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:ns3="http://www.iconpln.co.id"
+         xmlns:ns4="http://xmlns.oracle.com/pcbpel/adapter/db/top/insertVendor"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap">
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <partnerLinks>
+    <partnerLink name="ServiceVendor" partnerLinkType="ns1:ServiceVendor"
+                 myRole="VendorInterface"/>
+    <partnerLink name="VendorDatabase" partnerLinkType="ns2:VendorDatabase_plt"
+                 partnerRole="VendorDatabase_role"/>
+  </partnerLinks>
+  <variables>
+    <variable name="getById_InputVariable" messageType="ns1:getByIdRequest"/>
+    <variable name="InvokegetById_InputVariable"
+              messageType="ns2:VendorDatabaseSelect_inputParameters"/>
+    <variable name="InvokegetById_OutputVariable"
+              messageType="ns2:VendorCollection_msg"/>
+    <variable name="Reply1_getById_OutputVariable"
+              messageType="ns1:getByIdResponse"/>
+    <variable name="insert_InputVariable" messageType="ns1:insertRequest"/>
+    <variable name="InvokeInsert_InputVariable"
+              messageType="ns2:VendorCollection_msg"/>
+    <variable name="update_InputVariable" messageType="ns1:updateRequest"/>
+    <variable name="InvokeUpdate_InputVariable"
+              messageType="ns2:VendorCollection_msg"/>
+    <variable name="deleteById_InputVariable"
+              messageType="ns1:deleteByIdRequest"/>
+    <variable name="delete_InputVariable"
+              messageType="ns2:VendorCollection_msg"/>
+  </variables>
+  <sequence name="main">
+    <pick name="PickServiceVendor" createInstance="yes">
+      <onMessage variable="getById_InputVariable" partnerLink="ServiceVendor"
+                 portType="ns1:VendorInterface" operation="getById">
+        <sequence name="Sequence1">
+          <assign name="AssigngetById">
+            <copy>
+              <from>$getById_InputVariable.input/ns3:vendorId</from>
+              <to>$InvokegetById_InputVariable.VendorDatabaseSelect_inputParameters/ns4:pVendorId</to>
+            </copy>
+          </assign>
+          <invoke name="InvokegetById"
+                  partnerLink="VendorDatabase"
+                  portType="ns2:VendorDatabase_ptt"
+                  operation="VendorDatabaseSelect"
+                  inputVariable="InvokegetById_InputVariable"
+                  outputVariable="InvokegetById_OutputVariable"
+                  bpelx:invokeAsDetail="no"/>
+          <assign name="AssignReplygetById">
+            <copy>
+              <from>$InvokegetById_OutputVariable.VendorCollection/ns4:Vendor[1]/ns4:vendorid</from>
+              <to>$Reply1_getById_OutputVariable.response/ns3:vendor/ns3:vendorId</to>
+            </copy>
+            <copy>
+              <from>$InvokegetById_OutputVariable.VendorCollection/ns4:Vendor[1]/ns4:vendorname</from>
+              <to>$Reply1_getById_OutputVariable.response/ns3:vendor/ns3:vendorName</to>
+            </copy>
+          </assign>
+          <reply name="Reply1" variable="Reply1_getById_OutputVariable"
+                 partnerLink="ServiceVendor" portType="ns1:VendorInterface"
+                 operation="getById"/>
+        </sequence>
+      </onMessage>
+      <onMessage variable="insert_InputVariable" partnerLink="ServiceVendor"
+                 portType="ns1:VendorInterface" operation="insert">
+        <sequence name="Sequence2">
+          <assign name="AssignInsert">
+            <copy>
+              <from>0</from>
+              <to>$InvokeInsert_InputVariable.VendorCollection/ns4:Vendor/ns4:vendorid</to>
+            </copy>
+            <copy>
+              <from>$insert_InputVariable.request/ns3:vendorName</from>
+              <to>$InvokeInsert_InputVariable.VendorCollection/ns4:Vendor/ns4:vendorname</to>
+            </copy>
+          </assign>
+          <invoke name="InvokeInsert"
+                  partnerLink="VendorDatabase"
+                  portType="ns2:VendorDatabase_ptt" operation="insert"
+                  inputVariable="InvokeInsert_InputVariable"
+                  bpelx:invokeAsDetail="no"/>
+        </sequence>
+      </onMessage>
+      <onMessage variable="update_InputVariable" partnerLink="ServiceVendor"
+                 portType="ns1:VendorInterface" operation="update">
+        <sequence name="Sequence3">
+          <assign name="AssignUpdate">
+            <copy>
+              <from>$update_InputVariable.request/ns3:vendorId</from>
+              <to>$InvokeUpdate_InputVariable.VendorCollection/ns4:Vendor/ns4:vendorid</to>
+            </copy>
+            <copy>
+              <from>$update_InputVariable.request/ns3:vendorName</from>
+              <to>$InvokeUpdate_InputVariable.VendorCollection/ns4:Vendor/ns4:vendorname</to>
+            </copy>
+          </assign>
+          <invoke name="InvokeUpdate"
+                  partnerLink="VendorDatabase"
+                  portType="ns2:VendorDatabase_ptt" operation="update"
+                  inputVariable="InvokeUpdate_InputVariable"
+                  bpelx:invokeAsDetail="no"/>
+        </sequence>
+      </onMessage>
+      <onMessage variable="deleteById_InputVariable"
+                 partnerLink="ServiceVendor" portType="ns1:VendorInterface"
+                 operation="deleteById">
+        <sequence name="Sequence4">
+          <assign name="AssignDelete">
+            <copy>
+              <from>$deleteById_InputVariable.request/ns3:vendorId</from>
+              <to>$delete_InputVariable.VendorCollection/ns4:Vendor/ns4:vendorid</to>
+            </copy>
+            <copy>
+              <from>''</from>
+              <to>$delete_InputVariable.VendorCollection/ns4:Vendor/ns4:vendorname</to>
+            </copy>
+          </assign>
+          <invoke name="InvokeDelete"
+                  partnerLink="VendorDatabase"
+                  portType="ns2:VendorDatabase_ptt" operation="delete"
+                  inputVariable="delete_InputVariable"
+                  bpelx:invokeAsDetail="no"/>
+        </sequence>
+      </onMessage>
+    </pick>
+  </sequence>
+</process>
