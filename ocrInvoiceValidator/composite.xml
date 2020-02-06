@@ -25,6 +25,8 @@
   <import namespace="http://xmlns.oracle.com/bpel/workflow/taskService"
           location="oramds:/soa/shared/workflow/TaskServiceInterface.wsdl"
           importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/pcbpel/adapter/jms/ocrInvoiceValidator/ocrInvoiceValidator/JMSProducerSvc"
+          location="JMSProducerSvc.wsdl" importType="wsdl"/>
   <service name="JMSQueueConsumer" ui:wsdlLocation="JMSQueueConsumer.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/jms/ocrInvoiceValidator/ocrInvoiceValidator/JMSQueueConsumer#wsdl.interface(Consume_Message_ptt)"/>
     <binding.jca config="JMSQueueConsumer_jms.jca"/>
@@ -55,6 +57,10 @@
     <property name="jca.retry.maxInterval" type="xs:string" many="false"
               override="may">120</property>
   </reference>
+  <reference name="JMSProducerSvc" ui:wsdlLocation="JMSProducerSvc.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/jms/ocrInvoiceValidator/ocrInvoiceValidator/JMSProducerSvc#wsdl.interface(Produce_Message_ptt)"/>
+    <binding.jca config="JMSProducerSvc_jms.jca"/>
+  </reference>
   <wire>
     <source.uri>JMSQueueConsumer</source.uri>
     <target.uri>ocrInvoiceMediator/ocrInvoiceMediator</target.uri>
@@ -74,5 +80,9 @@
   <wire>
     <source.uri>ocrInvoiceProcess/CorrectInvalidInvoice.TaskService</source.uri>
     <target.uri>CorrectInvalidInvoice/TaskService</target.uri>
+  </wire>
+  <wire>
+    <source.uri>ocrInvoiceProcess/JMSProducerSvc</source.uri>
+    <target.uri>JMSProducerSvc</target.uri>
   </wire>
 </composite>

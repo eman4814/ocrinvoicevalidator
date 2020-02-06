@@ -36,7 +36,8 @@
          xmlns:task="http://xmlns.oracle.com/bpel/workflow/task"
          xmlns:wfcommon="http://xmlns.oracle.com/bpel/workflow/common"
          xmlns:wf="http://schemas.oracle.com/bpel/extensions/workflow"
-         xmlns:ns7="http://xmlns.oracle.com/bpel/workflow/TaskEvidenceService">
+         xmlns:ns7="http://xmlns.oracle.com/bpel/workflow/TaskEvidenceService"
+         xmlns:ns8="http://xmlns.oracle.com/pcbpel/adapter/jms/ocrInvoiceValidator/ocrInvoiceValidator/JMSProducerSvc">
 
   <import namespace="http://xmlns.oracle.com/ocrInvoiceValidator/ocrInvoiceValidator/ocrInvoiceProcess" location="ocrInvoiceProcess.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
   <!-- 
@@ -60,6 +61,8 @@
     <partnerLink name="CorrectInvalidInvoice.TaskService"
                  partnerLinkType="ns6:TaskService" partnerRole="TaskService"
                  myRole="TaskServiceCallbackListener"/>
+    <partnerLink name="JMSProducerSvc" partnerLinkType="ns8:Produce_Message_plt"
+                 partnerRole="Produce_Message_role"/>
   </partnerLinks>
 
   <!-- 
@@ -77,6 +80,8 @@
               messageType="ns1:ContractCollection_msg"/>
     <variable name="CorrectInvalidInvoice1_globalVariable"
               messageType="ns6:taskMessage"/>
+    <variable name="Invoke2_Produce_Message_InputVariable"
+              messageType="ns8:Produce_Message_msg"/>
   </variables>
 
   <!-- 
@@ -275,5 +280,16 @@
         </sequence>
       </else>
     </if>
+    <assign name="Assign3">
+      <copy>
+        <from>$inputVariable.payload</from>
+        <to>$Invoke2_Produce_Message_InputVariable.body</to>
+      </copy>
+    </assign>
+    <invoke name="Invoke2"
+            partnerLink="JMSProducerSvc" portType="ns8:Produce_Message_ptt"
+            operation="Produce_Message"
+            inputVariable="Invoke2_Produce_Message_InputVariable"
+            bpelx:invokeAsDetail="no"/>
   </sequence>
 </process>

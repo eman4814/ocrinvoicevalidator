@@ -20,4 +20,7 @@
     <interface.wsdl interface="http://xmlns.oracle.com/bpel/workflow/taskService#wsdl.interface(TaskService)"
                     callbackInterface="http://xmlns.oracle.com/bpel/workflow/taskService#wsdl.interface(TaskServiceCallback)"/>
   </reference>
+  <reference name="JMSProducerSvc" ui:wsdlLocation="JMSProducerSvc.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/jms/ocrInvoiceValidator/ocrInvoiceValidator/JMSProducerSvc#wsdl.interface(Produce_Message_ptt)"/>
+  </reference>
 </componentType>
