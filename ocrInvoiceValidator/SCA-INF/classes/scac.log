@@ -1,10 +1,10 @@
-Feb 06, 2020 3:15:00 PM oracle.mds
+Feb 13, 2020 6:14:53 AM oracle.mds
 NOTIFICATION: PManager instance is created without multitenancy support as JVM flag "oracle.multitenant.enabled" is not set to enable multitenancy support.
-Feb 06, 2020 3:15:00 PM oracle.security.jps.internal.config.xml.XmlConfigurationFactory initDefaultConfiguration
+Feb 13, 2020 6:14:53 AM oracle.security.jps.internal.config.xml.XmlConfigurationFactory initDefaultConfiguration
 SEVERE: java.io.FileNotFoundException: .\config\jps-config.xml (The system cannot find the path specified)
-Feb 06, 2020 3:15:00 PM oracle.mds
+Feb 13, 2020 6:14:53 AM oracle.mds
 NOTIFICATION: Auditing is disabled for component MDS.
-Feb 06, 2020 3:15:05 PM oracle.fabric.common.wsdl.SchemaManager isIncrementalBuildSupported
+Feb 13, 2020 6:14:54 AM oracle.fabric.common.wsdl.SchemaManager isIncrementalBuildSupported
 INFO: XMLSchema incremental build enabled.
 Java HotSpot(TM) 64-Bit Server VM warning: ignoring option PermSize=32m; support was removed in 8.0
 Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=256m; support was removed in 8.0

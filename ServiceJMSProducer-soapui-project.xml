@@ -78,7 +78,7 @@
       <xsd:element name="SWFT" type="xsd:string"/>
     </xsd:sequence>
   </xsd:complexType>
-</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://desktop-4tr95m4:7101/soa-infra/services/default/ocrInvoiceJMSProducer/ServiceJMSProducer</con:endpoint></con:endpoints><con:operation id="422f13f8-4573-4cbd-a679-01e3999caa7e" isOneWay="false" action="produce" name="produce" bindingOperationName="produce" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="30fe5b8c-f28e-4c2e-8b0a-c8a2152589b9" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://desktop-4tr95m4:7101/soa-infra/services/default/ocrInvoiceJMSProducer/ServiceJMSProducer</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:proc="http://www.iconpln.co.id/procure-to-pay">\r
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://desktop-4tr95m4:7101/soa-infra/services/default/ocrInvoiceJMSProducer/ServiceJMSProducer</con:endpoint></con:endpoints><con:operation id="422f13f8-4573-4cbd-a679-01e3999caa7e" isOneWay="false" action="produce" name="produce" bindingOperationName="produce" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="30fe5b8c-f28e-4c2e-8b0a-c8a2152589b9" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.14.152.136:7201/soa-infra/services/test/ocrInvoiceJMSProducer/ServiceJMSProducer</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:proc="http://www.iconpln.co.id/procure-to-pay">\r
    <soapenv:Header/>\r
    <soapenv:Body>\r
       <proc:ocrInvoice>\r
@@ -94,7 +94,7 @@
          <proc:billTo>\r
             <proc:name></proc:name>\r
             <proc:contact></proc:contact>\r
-            <proc:contractid></proc:contractid>\r
+            <proc:contractid>Contract123</proc:contractid>\r
          </proc:billTo>\r
          <proc:vendor>\r
             <proc:name></proc:name>\r
